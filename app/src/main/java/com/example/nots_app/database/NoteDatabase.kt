@@ -15,10 +15,10 @@ abstract class NoteDatabase : RoomDatabase(){
     companion object{
         @Volatile
         private  var instance :NoteDatabase?=null
-        private  val Lock = Any()
+        private  val LOCK = Any()
 
         operator  fun  invoke(context: Context)= instance?:
-        synchronized(Lock){
+        synchronized(LOCK){
             instance ?:
             createDatabase(context).also{
                 instance=it

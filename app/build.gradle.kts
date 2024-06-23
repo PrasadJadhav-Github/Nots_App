@@ -8,12 +8,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nots_app"
+    namespace = "com.example.notesroompractice"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.nots_app"
-        minSdk = 24
+        applicationId = "com.example.notesroompractice"
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -37,36 +37,35 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
     buildFeatures{
-        dataBinding=true
-        viewBinding =true
+        dataBinding = true
     }
 }
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     // ROOM
     val roomVersion = "2.6.1"
     implementation ("androidx.room:room-runtime:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
+
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     implementation ("androidx.room:room-ktx:$roomVersion")
+
     // Navigation
     val navVersion = "2.7.5"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+
     // Life Cycle Arch
     val lifecycleVersion = "2.6.2"
     // ViewModel

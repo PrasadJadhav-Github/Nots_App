@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nots_app.databinding.NotsLayoutBinding
+import com.example.notesroompractice.databinding.NotsLayoutBinding
 import com.example.nots_app.fragments.HomeFragmentDirections
 import com.example.nots_app.model.Note
 
@@ -16,24 +16,19 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Note>() {
         override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
-            return oldItem.id == newItem.id &&
-                    oldItem.noteDescription == newItem.noteDescription &&
-                    oldItem.noteTitle == newItem.noteTitle
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
             return oldItem == newItem
         }
     }
-    private val differ = AsyncListDiffer(this, differCallback)
+
+    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        return NoteViewHolder(
-            NotsLayoutBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent, false
-            )
-        )
+        val binding = NotsLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return NoteViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -46,7 +41,7 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         holder.itemBinding.noteDesc.text = currentNote.noteDescription
 
         holder.itemView.setOnClickListener {
-            val direction = HomeFragmentDirections.actionHomeFragmentToEditNoteFragment(currentNote.toString())
+            val direction = HomeFragmentDirections.actionHomeFragmentToEditNoteFragment(currentNote)
             it.findNavController().navigate(direction)
         }
     }
